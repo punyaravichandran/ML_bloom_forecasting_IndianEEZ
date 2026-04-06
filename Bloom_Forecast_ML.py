@@ -212,6 +212,18 @@ plt.grid()
 
 plt.show()
 
+#Partial Dependence Plot
+from sklearn.inspection import PartialDependenceDisplay
+cleaned_stacked_data_pandas = stacked.to_pandas()
+feature_names = ['sst', 'par','nflh']
+PartialDependenceDisplay.from_estimator(
+    best, 
+    cleaned_stacked_data_pandas[['sst', 'par','nflh']],
+    feature_names,
+    kind='average' # or 'individual'
+)
+plt.suptitle("Partial Dependence Plots: SST and PAR vs. Predicted Chlorophyll")
+plt.show()
 
 # Model Bias
 # Rebuild MultiIndex & Unstack
